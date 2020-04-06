@@ -14,8 +14,9 @@ using Microsoft.Extensions.Logging;
 using rmicore.Entities;
 using rmicore.Repository;
 using AutoMapper;
-
-
+using rmicore.Interface;
+using rmicore.Services;
+using rminsurance.Controllers;
 
 namespace rmicore
 {
@@ -47,6 +48,11 @@ namespace rmicore
             services.AddScoped<IBasicDataRepository<OccupationStatus>, OccupationStatusManager>();
 
             services.AddScoped<IBasicDataRepository<EmploymentType>, EmploymentTypeManager>();
+
+            services.AddScoped<IDataRepository, DataRepository>();
+
+            services.AddScoped<IDataService, DataService>();
+           
             //
 
             //Mapper

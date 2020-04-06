@@ -7,6 +7,7 @@ using rmicore.Repository;
 using rmicore.Entities;
 using AutoMapper;
 using rmicore;
+using rmicore.Interface;
 
 namespace rminsurance.Controllers
 {
@@ -16,13 +17,16 @@ namespace rminsurance.Controllers
     [EnableCors("ReactPolicy")]
     public class TestController : ControllerBase
     {
-        private readonly IMapper _mapper;
 
-       
-
+        private readonly IDataService _dataService;
 
 
-        private readonly IBasicDataRepository<Title> _basicTitleDataRepository;
+
+        private readonly IMapper _mapper;       
+
+
+
+        //private readonly IBasicDataRepository<Title> _basicTitleDataRepository;
 
         private readonly IBasicDataRepository<Occupation> _basicOccupationDataRepository;
 
@@ -32,15 +36,16 @@ namespace rminsurance.Controllers
 
 
 
-        public TestController(IMapper mapper,IBasicDataRepository<Title> basicTitleDataRepository, 
+        public TestController(IMapper mapper,IDataService dataService, 
             IBasicDataRepository<Occupation> basicOccupationDataRepository, 
             IBasicDataRepository<OccupationStatus> basicOccupationStatusDataRepository, 
             IBasicDataRepository<EmploymentType> basicEmploymentTypeDataRepository)
         {
-            _basicTitleDataRepository = basicTitleDataRepository;
+            //_basicTitleDataRepository = basicTitleDataRepository;
             _basicOccupationDataRepository = basicOccupationDataRepository;
             _basicOccupationStatusDataRepository = basicOccupationStatusDataRepository;
             _basicEmploymentTypeDataRepository = basicEmploymentTypeDataRepository;
+            _dataService = dataService;
             _mapper = mapper;
         }
              
@@ -56,9 +61,9 @@ namespace rminsurance.Controllers
         [HttpGet("titles")] // GET /api/test/titles/
         public IActionResult GetTitles()
         {
-            IEnumerable<Title> titles = _basicTitleDataRepository.GetAll();
-                     
-            //IEnumerable<SimpleReactObjectViewModel> test = (_mapper.Map<List<SimpleReactObjectViewModel>>(titles));
+            //IEnumerable<Title> titles = _basicTitleDataRepository.GetAll();
+
+            IEnumerable<Title> titles = _dataService.GetAllTitles();
 
             return Ok(_mapper.Map<List<SimpleReactObjectViewModel>>(titles));
         }
@@ -66,8 +71,7 @@ namespace rminsurance.Controllers
         [HttpGet("occupations")] // GET /api/test/occcupations/
         public IActionResult GetOccupations()
         {
-            IEnumerable<Occupation> occupations = _basicOccupationDataRepository.GetAll();
-                  
+            IEnumerable<Occupation> occupations = _basicOccupationDataRepository.GetAll();                  
 
             return Ok(_mapper.Map<List<SimpleReactObjectViewModel>>(occupations));
         }
