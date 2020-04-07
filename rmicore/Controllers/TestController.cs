@@ -18,79 +18,62 @@ namespace rminsurance.Controllers
     public class TestController : ControllerBase
     {
 
-        private readonly IDataService _dataService;
+        private readonly IDataService _dataService;  
 
-
-
-        private readonly IMapper _mapper;       
-
-
-
-        //private readonly IBasicDataRepository<Title> _basicTitleDataRepository;
-
-        private readonly IBasicDataRepository<Occupation> _basicOccupationDataRepository;
-
-        private readonly IBasicDataRepository<OccupationStatus> _basicOccupationStatusDataRepository;
-
-        private readonly IBasicDataRepository<EmploymentType> _basicEmploymentTypeDataRepository;
-
-
-
-        public TestController(IMapper mapper,IDataService dataService, 
-            IBasicDataRepository<Occupation> basicOccupationDataRepository, 
-            IBasicDataRepository<OccupationStatus> basicOccupationStatusDataRepository, 
-            IBasicDataRepository<EmploymentType> basicEmploymentTypeDataRepository)
-        {
-            //_basicTitleDataRepository = basicTitleDataRepository;
-            _basicOccupationDataRepository = basicOccupationDataRepository;
-            _basicOccupationStatusDataRepository = basicOccupationStatusDataRepository;
-            _basicEmploymentTypeDataRepository = basicEmploymentTypeDataRepository;
-            _dataService = dataService;
-            _mapper = mapper;
-        }
-             
-        //// GET: api/Title
-        //[HttpGet]
-        //public IActionResult Get()
-        //{
-        //    IEnumerable<Title> titles = _dataRepository.GetAll();
-        //    return Ok(titles);
-        //}
-
+        public TestController(IDataService dataService)           
+        {           
+            _dataService = dataService;          
+        }             
+  
 
         [HttpGet("titles")] // GET /api/test/titles/
         public IActionResult GetTitles()
-        {
-            //IEnumerable<Title> titles = _basicTitleDataRepository.GetAll();
+        {       
+            List<SimpleReactObjectViewModel> result = _dataService.GetAllTitles();
 
-            IEnumerable<Title> titles = _dataService.GetAllTitles();
-
-            return Ok(_mapper.Map<List<SimpleReactObjectViewModel>>(titles));
+            return Ok(result);
         }
 
         [HttpGet("occupations")] // GET /api/test/occcupations/
         public IActionResult GetOccupations()
         {
-            IEnumerable<Occupation> occupations = _basicOccupationDataRepository.GetAll();                  
+            List<SimpleReactObjectViewModel> result = _dataService.GetAllOccupations();
 
-            return Ok(_mapper.Map<List<SimpleReactObjectViewModel>>(occupations));
+            return Ok(result);
         }
 
         [HttpGet("occupationstatus")] // GET /api/test/occcupationStatus/
         public IActionResult GetOccupationStatus()
         {
-            IEnumerable<OccupationStatus> occupationStatus = _basicOccupationStatusDataRepository.GetAll();
+            List<SimpleReactObjectViewModel> result = _dataService.GetAllOccupationStatuses();
 
-            return Ok(_mapper.Map<List<SimpleReactObjectViewModel>>(occupationStatus));
+            return Ok(result);
+        }
+
+        [HttpGet("employmenttypes")] // GET /api/test/employmenttypes/
+        public IActionResult GetEmploymentTypes()
+        {
+            List<SimpleReactObjectViewModel> result = _dataService.GetAllEmploymentTypes();
+
+            return Ok(result);
         }
 
 
-        [HttpGet("employmenttypes")] // GET /api/test/occcupationStatus/
-        public IActionResult GetEmploymentTypes()
+        [HttpGet("licensetypes")] // GET /api/test/licensetypes/
+        public IActionResult GetLicenseTypes()
         {
-            IEnumerable<EmploymentType> employmentTypes = _basicEmploymentTypeDataRepository.GetAll();
+            List<SimpleReactObjectViewModel> result = _dataService.GetAllLicenseTypes();
 
-            return Ok(_mapper.Map<List<SimpleReactObjectViewModel>>(employmentTypes));
+            return Ok(result);
+        }
+
+
+        [HttpGet("vehicleuses")] // GET /api/test/vehicleuses/
+        public IActionResult GetVehicleUses()
+        {
+            List<SimpleReactObjectViewModel> result = _dataService.GetAllVehicleUses();
+
+            return Ok(result);
         }
 
 

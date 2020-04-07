@@ -39,20 +39,10 @@ namespace rmicore
                options => options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
 
             
-            //IOC
-
-            services.AddScoped<IBasicDataRepository<Title>, TitleManager>();
-
-            services.AddScoped<IBasicDataRepository<Occupation>, OccupationManager>();
-
-            services.AddScoped<IBasicDataRepository<OccupationStatus>, OccupationStatusManager>();
-
-            services.AddScoped<IBasicDataRepository<EmploymentType>, EmploymentTypeManager>();
+            //IOC        
 
             services.AddScoped<IDataRepository, DataRepository>();
-
-            services.AddScoped<IDataService, DataService>();
-           
+            services.AddScoped<IDataService, DataService>();           
             //
 
             //Mapper

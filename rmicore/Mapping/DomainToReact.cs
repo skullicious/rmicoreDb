@@ -30,6 +30,14 @@ namespace rmicore.Mapping
               .ForMember(dest => dest._id, opt =>
                opt.MapFrom(src => src.EmploymentTypeId));
 
+            CreateMap<LicenseType, SimpleReactObjectViewModel>()
+              .ForMember(dest => dest._id, opt =>
+               opt.MapFrom(src => src.LicenseTypeId));
+
+            CreateMap<VehicleUse, SimpleReactObjectViewModel>()
+              .ForMember(dest => dest._id, opt =>
+               opt.MapFrom(src => src.VehicleUseId));
+
 
         }
 

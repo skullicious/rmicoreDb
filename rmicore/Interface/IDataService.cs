@@ -8,6 +8,16 @@ namespace rmicore.Interface
 {
     public interface IDataService
     {
-        public List<Title> GetAllTitles();
+        public List<SimpleReactObjectViewModel> GetAllTitles();
+
+        public List<SimpleReactObjectViewModel> GetAllOccupations();
+
+        public List<SimpleReactObjectViewModel> GetAllOccupationStatuses();
+
+        public List<SimpleReactObjectViewModel> GetAllEmploymentTypes();
+
+        public List<SimpleReactObjectViewModel> GetAllLicenseTypes();
+
+        public List<SimpleReactObjectViewModel> GetAllVehicleUses();
     }
 }

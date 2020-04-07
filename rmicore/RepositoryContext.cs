@@ -19,6 +19,8 @@ namespace rmicore
         public DbSet<Occupation> Occupations { get; set; }
         public DbSet<OccupationStatus> OccupationStatus { get; set; }
         public DbSet<EmploymentType> EmploymentTypes { get; set; }
+        public DbSet<VehicleUse> VehicleUses { get; set; }
+        public DbSet<LicenseType> LicenseTypes { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -141,6 +143,46 @@ namespace rmicore
                 Name = "Local Government"
             });
 
+
+            modelBuilder.Entity<VehicleUse>().HasData(new VehicleUse
+            {
+                VehicleUseId = 1,
+                Name = "Commuting"
+            }, new VehicleUse
+            {
+                VehicleUseId = 2,
+                Name = "Personal Business Use"
+            },
+             new VehicleUse
+             {
+                 VehicleUseId = 3,
+                 Name = "Social, Domestic or Pleasure"
+             },
+             new VehicleUse
+             {
+                 VehicleUseId = 4,
+                 Name = "Deliveroo, Uber or similar"
+             });
+
+            modelBuilder.Entity<LicenseType>().HasData(new LicenseType
+            {
+                LicenseTypeId = 1,
+                Name = "Provisional"
+            }, new LicenseType
+            {
+                LicenseTypeId = 2,
+                Name = "Full UK"
+            },
+           new LicenseType
+           {
+               LicenseTypeId = 3,
+               Name = "Full EU"
+           },
+           new LicenseType
+           {
+               LicenseTypeId = 4,
+               Name = "Full Other"
+           });
 
 
         }
