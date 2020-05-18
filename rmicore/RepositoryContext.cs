@@ -4,16 +4,21 @@ using System.Linq;
 using System.Threading.Tasks;
 using rmicore.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using System.Reflection;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace rmicore
 {
-    public class RepositoryContext: DbContext
+    public class RepositoryContext: IdentityDbContext<Client>
     {
         public RepositoryContext(DbContextOptions options)
             :base(options)
         {
-
         }
+
+
+        public DbSet<User> Users { get; set; }
         public DbSet<Test> Tests { get; set; }
         public DbSet<Title> Titles { get; set; }
         public DbSet<Occupation> Occupations { get; set; }
@@ -22,9 +27,22 @@ namespace rmicore
         public DbSet<VehicleUse> VehicleUses { get; set; }
         public DbSet<LicenseType> LicenseTypes { get; set; }
 
+        /// <Data>
+        /// 
+        
+        public DbSet<Rider> Rider { get; set; }
+      
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ApplyConfiguration(new RoleConfiguration());
+
+
             modelBuilder.Entity<Title>().HasData(new Title
             {
                 TitleId = 1,

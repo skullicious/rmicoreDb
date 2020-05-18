@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using rmicore;
 
 namespace rmicore.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20200415095705_IdentityExtensions")]
+    partial class IdentityExtensions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,15 +50,15 @@ namespace rmicore.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "828bee30-8405-4be4-a766-011833b1b2ea",
-                            ConcurrencyStamp = "730bc1ad-e64c-432f-8bd5-0a793237fb13",
+                            Id = "c04c226d-7a07-42eb-9b73-cb3fa9f19a6c",
+                            ConcurrencyStamp = "bbab67a3-3a74-4a50-a58b-c8ec934c4610",
                             Name = "Visitor",
                             NormalizedName = "VISITOR"
                         },
                         new
                         {
-                            Id = "4ad095f0-7e4e-4852-9c61-f2675e45c37c",
-                            ConcurrencyStamp = "448b2f04-f648-4364-832b-661bcfa0af81",
+                            Id = "34270754-cc6c-4b8d-8e1d-762f51f832cb",
+                            ConcurrencyStamp = "6fc7ef39-c51b-4b81-a6d2-b3aa5a100aab",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -164,47 +166,6 @@ namespace rmicore.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("rmicore.Entities.Address", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AddressLine1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AddressLine2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AddressLine3")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AddressLine4")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AddressLine5")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ConfirmedAddress")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PostCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RiderId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TypeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RiderId");
-
-                    b.ToTable("Address");
                 });
 
             modelBuilder.Entity("rmicore.Entities.Client", b =>
@@ -461,32 +422,6 @@ namespace rmicore.Migrations
                         });
                 });
 
-            modelBuilder.Entity("rmicore.Entities.Rider", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Rider");
-                });
-
             modelBuilder.Entity("rmicore.Entities.Test", b =>
                 {
                     b.Property<Guid>("TestId")
@@ -652,24 +587,6 @@ namespace rmicore.Migrations
                 {
                     b.HasOne("rmicore.Entities.Client", null)
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("rmicore.Entities.Address", b =>
-                {
-                    b.HasOne("rmicore.Entities.Rider", null)
-                        .WithMany("Addresses")
-                        .HasForeignKey("RiderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("rmicore.Entities.Rider", b =>
-                {
-                    b.HasOne("rmicore.Entities.User", null)
-                        .WithMany("Riders")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

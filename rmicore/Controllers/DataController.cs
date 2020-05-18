@@ -13,14 +13,13 @@ namespace rminsurance.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
-    [ApiController] 
-    [EnableCors("ReactPolicy")]
-    public class TestController : ControllerBase
+
+    public class DataController : ControllerBase
     {
 
         private readonly IDataService _dataService;  
 
-        public TestController(IDataService dataService)           
+        public DataController(IDataService dataService)           
         {           
             _dataService = dataService;          
         }             

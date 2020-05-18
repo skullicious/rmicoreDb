@@ -1,9 +1,12 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
+using rmicore.Dtos;
 using rmicore.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace rmicore.Mapping
@@ -13,10 +16,13 @@ namespace rmicore.Mapping
 
         public DomainToReact()
         {
+            CreateMap<User, UserDto>();
+            CreateMap<UserDto, User>();
+
+
             CreateMap<Title, SimpleReactObjectViewModel>()
                 .ForMember(dest => dest._id, opt =>
                  opt.MapFrom(src => src.TitleId));
-
 
             CreateMap<Occupation, SimpleReactObjectViewModel>()
                 .ForMember(dest => dest._id, opt =>
@@ -37,8 +43,7 @@ namespace rmicore.Mapping
             CreateMap<VehicleUse, SimpleReactObjectViewModel>()
               .ForMember(dest => dest._id, opt =>
                opt.MapFrom(src => src.VehicleUseId));
-
-
+                                
         }
 
 
