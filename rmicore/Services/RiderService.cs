@@ -1,6 +1,7 @@
 ﻿using rmicore.Entities;
 using rmicore.Interface;
 using rmicore.Repository;
+using rmicore.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,17 +24,17 @@ namespace rmicore.Services
         }
 
 
-        public async RiderViewModel PopulateRiderViewModel(Rider rider, RiderViewModel viewModel)
+
+        public RiderViewModel PopulateRiderViewModel(Rider rider, RiderViewModel viewModel)
         {
-            viewModel.Person = person;
-            viewModel.PersonId = person.Id;
-            viewModel.Person.Status = await GetStatusById(person.Id, new ProposerStatus()) ?? new ProposerStatus() { Person = person };
-            viewModel.Person.LicenceUse = await GetLicenceById(person.Id, new RiderLicence()) ?? new RiderLicence() { Person = person };
-            viewModel.OccupationVM = await PopulateOccupationViewModel(person.Id);
-            viewModel.ContactVM = await PopulateContactViewModel(person.Id, person);
-            if (viewModel.ContactVM.HomeAddress.ConfirmedAddress != null)
-                viewModel.AddressSearched = true;
-            await PopulateRiderDropdowns(viewModel);
+            viewModel.rider = rider;
+            viewModel.Id = rider.Id;
+            //viewModel.Person.Status = await GetStatusById(person.Id, new ProposerStatus()) ?? new ProposerStatus() { Person = person };
+            //viewModel.Person.LicenceUse = await GetLicenceById(person.Id, new RiderLicence()) ?? new RiderLicence() { Person = person };
+            //viewModel.OccupationVM = await PopulateOccupationViewModel(person.Id);
+            //viewModel.ContactVM = await PopulateContactViewModel(person.Id, person);
+            //if (viewModel.ContactVM.HomeAddress.ConfirmedAddress != null)
+            //    viewModel.AddressSearched = true;
             return viewModel;
         }
 

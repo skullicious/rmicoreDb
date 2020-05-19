@@ -1,4 +1,5 @@
-﻿using System;
+﻿using rmicore.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ namespace rmicore.ViewModels
 
         public string individual_firstName { get; set; }
 
-        public string individual_lastName{ get; set; }
+        public string individual_lastName { get; set; }
 
         public string status_postcode { get; set; }
 
@@ -37,6 +38,8 @@ namespace rmicore.ViewModels
         public string vehicleUse_licenseRestriction { get; set; }
 
         public string vehicleUse_motoringQualification { get; set; }
+
+        public virtual Rider rider {get; set;}
 
 
     }

@@ -37,7 +37,7 @@ namespace rmicore
             services.AddMvc(option => option.EnableEndpointRouting = false);
 
 
-            services.AddCors();
+            //services.AddCors();
             services.AddDbContext<RepositoryContext>(
              options => options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
           
@@ -74,6 +74,8 @@ namespace rmicore
 
             services.AddScoped<IDataRepository, DataRepository>();
             services.AddScoped<IDataService, DataService>();
+            services.AddScoped<IRiderService, RiderService>();
+            services.AddScoped<IRiderRepository, RiderRepository>();
 
             services.AddCors(options =>
             {
