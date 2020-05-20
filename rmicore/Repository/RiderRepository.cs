@@ -22,5 +22,54 @@ namespace rmicore.Repository
             return _db.Rider.Find(riderId);
         }
 
+
+        public bool AddIndividualToDatabase(Individual individual)
+        {
+            bool blSuccess = true;
+            try
+            {
+                if (individual == null)
+                    return false;
+                else
+                    _db.Individual.Add(individual);
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                //Logger.Error("Failed AddIndividualToDatabase\n" + ex);
+                //Logger.Error(ex.GetAllMessages());
+                blSuccess = false;
+            }
+            return blSuccess;
+        }
+
+        public Individual GetIndividualById(int riderId)
+        {
+            return _db.Individual.Find(riderId);
+        }
+
+
+        public bool EditObjectInDatabase(object dbValues, object table)
+        {
+            bool blSuccess = true;
+            try
+            {
+                _db.Entry(dbValues).CurrentValues.SetValues(table);
+                if (_db.ChangeTracker.HasChanges())
+                    _db.SaveChanges();
+            }
+            //catch (DbEntityValidationException ex)
+            //{
+            //Logger.Error("Failed Entities in SaveTableInDatabase\n" + Em.EntityErrorCapture(ex));
+            //blSuccess = false;
+            //}
+            catch (Exception ex)
+            {
+                //Logger.Error("Failed SaveTableInDatabase\n" + ex);
+                //Logger.Error(ex.GetAllMessages());
+                //blSuccess = false;
+            }
+            return blSuccess;
+        }
     }
 }

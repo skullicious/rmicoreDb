@@ -26,10 +26,7 @@ namespace rmicore
         public DbSet<EmploymentType> EmploymentTypes { get; set; }
         public DbSet<VehicleUse> VehicleUses { get; set; }
         public DbSet<LicenseType> LicenseTypes { get; set; }
-
-        /// <Data>
-        /// 
-        
+        public DbSet<Individual> Individual { get; set; }      
         public DbSet<Rider> Rider { get; set; }
       
 

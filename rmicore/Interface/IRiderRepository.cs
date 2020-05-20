@@ -9,5 +9,10 @@ namespace rmicore.Interface
     public interface IRiderRepository
     {
         Rider GetRiderById(int riderId);
+        bool AddIndividualToDatabase(Individual individual);
+
+        Individual GetIndividualById(int riderId);
+
+        bool EditObjectInDatabase(object dbValues, object table);
     }
 }

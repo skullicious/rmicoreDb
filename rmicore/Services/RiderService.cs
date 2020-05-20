@@ -27,7 +27,7 @@ namespace rmicore.Services
 
         public RiderViewModel PopulateRiderViewModel(Rider rider, RiderViewModel viewModel)
         {
-            viewModel.rider = rider;
+           
             viewModel.Id = rider.Id;
             //viewModel.Person.Status = await GetStatusById(person.Id, new ProposerStatus()) ?? new ProposerStatus() { Person = person };
             //viewModel.Person.LicenceUse = await GetLicenceById(person.Id, new RiderLicence()) ?? new RiderLicence() { Person = person };
@@ -38,6 +38,57 @@ namespace rmicore.Services
             return viewModel;
         }
 
+
+        public bool FullPagePost(RiderViewModel viewModel)
+        {
+            bool individualReturn = AddOrUpdateIndividualDetails(viewModel);
+            //bool statusReturn = AddOrUpdateStatusDetails(viewModel);
+            //bool occupationReturn = AddOrUpdateOccupationDetails(viewModel);
+            //bool vehicleUseReturn = AddOrUpdateVehicleUseDetails(viewModel); 
+
+            bool blReturn = individualReturn;
+            //bool blReturn = (licenceReturn && statusReturn && contactReturn && indivReturn);
+            return blReturn;
+        }
+
+        private bool AddOrUpdateIndividualDetails(RiderViewModel viewModel)
+        {
+            bool blReturn = true;
+
+            try
+            {
+
+                Individual individual = new Individual();
+                individual.RiderId = viewModel.Id;
+
+                //Person comes in here?
+                //Person ID is set
+
+                //Try validating on a per class basis here
+                //    blReturn =  _riderRepository.AddIndividualToDatabase(individual);
+                var dbValue = GetIndividualById(viewModel.Id);
+
+                blReturn = (dbValue == null) ? _riderRepository.AddIndividualToDatabase(individual) : _riderRepository.EditObjectInDatabase(dbValue, individual);
+
+
+
+            }
+
+            catch (Exception ex)
+            {
+
+            }
+
+            return blReturn;
+
+        }
+
+
+        private Individual GetIndividualById(int riderId)
+        {
+
+            return _riderRepository.GetIndividualById(riderId);
+        }
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using rmicore.Entities;
+﻿using Microsoft.AspNetCore.Identity;
+using rmicore.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,12 @@ namespace rmicore.ViewModels
 {
     public class RiderViewModel
     {
-
+        public RiderViewModel()
+        {
+            //rider = new Rider();
+            //rider.Individual = new Individual();
+            
+        }
 
         public int Id { get; set; }
         public string individual_title { get; set; }
@@ -39,7 +45,9 @@ namespace rmicore.ViewModels
 
         public string vehicleUse_motoringQualification { get; set; }
 
-        public virtual Rider rider {get; set;}
+        //public Rider rider { get; set; }
+
+   
 
 
     }

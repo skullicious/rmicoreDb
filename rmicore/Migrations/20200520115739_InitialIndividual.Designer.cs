@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using rmicore;
 
 namespace rmicore.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20200520115739_InitialIndividual")]
+    partial class InitialIndividual
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,15 +50,15 @@ namespace rmicore.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "5d9e589a-abc5-4af9-ab53-21a72428c4f9",
-                            ConcurrencyStamp = "212be96e-4ac7-42f2-8925-e1cd3334a29f",
+                            Id = "71418071-d2f7-449a-905a-27c45f9ab341",
+                            ConcurrencyStamp = "5d7c8405-35e4-4b8a-93ed-9c4f551440ea",
                             Name = "Visitor",
                             NormalizedName = "VISITOR"
                         },
                         new
                         {
-                            Id = "2040b98c-206c-43ae-8405-40035bd3c87c",
-                            ConcurrencyStamp = "5038c455-9804-4ad8-97e1-a73bd72b938e",
+                            Id = "704a2cc7-e01a-419e-acdc-28d0f094f426",
+                            ConcurrencyStamp = "c4ef9826-31aa-4cca-99e3-4fca2847f315",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });

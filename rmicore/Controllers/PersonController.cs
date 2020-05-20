@@ -37,12 +37,14 @@ namespace rmicore.Controllers
 
 
         [HttpPost("rider/save")]
-        public IActionResult SaveRider(int id, [FromBody]RiderViewModel riderVm)      
+        public IActionResult SaveRider([FromBody]RiderViewModel riderVm)      
         {
-            Console.WriteLine("we here");
+            _riderService.FullPagePost(riderVm);
+
             return Ok();
         }
 
+       
 
         [HttpPut("rider/{id}")]
         public IActionResult RiderDetails(int id, [FromBody]UserDto userDto)

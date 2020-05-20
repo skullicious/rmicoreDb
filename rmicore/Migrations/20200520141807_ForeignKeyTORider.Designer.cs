@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using rmicore;
 
 namespace rmicore.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20200520141807_ForeignKeyTORider")]
+    partial class ForeignKeyTORider
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,15 +50,15 @@ namespace rmicore.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "5d9e589a-abc5-4af9-ab53-21a72428c4f9",
-                            ConcurrencyStamp = "212be96e-4ac7-42f2-8925-e1cd3334a29f",
+                            Id = "2a2b4e2d-e1be-4e06-bb9a-79e575b370f0",
+                            ConcurrencyStamp = "35f43187-842a-427f-b438-6415ece9f0b9",
                             Name = "Visitor",
                             NormalizedName = "VISITOR"
                         },
                         new
                         {
-                            Id = "2040b98c-206c-43ae-8405-40035bd3c87c",
-                            ConcurrencyStamp = "5038c455-9804-4ad8-97e1-a73bd72b938e",
+                            Id = "7dcba3ff-6e55-40c0-a925-408452042651",
+                            ConcurrencyStamp = "3e05a342-0eca-4c5a-8750-3497ed7448e1",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -500,6 +502,9 @@ namespace rmicore.Migrations
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RiderId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
