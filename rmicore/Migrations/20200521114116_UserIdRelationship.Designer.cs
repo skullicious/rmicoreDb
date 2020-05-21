@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using rmicore;
 
 namespace rmicore.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20200521114116_UserIdRelationship")]
+    partial class UserIdRelationship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,15 +50,15 @@ namespace rmicore.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "717ed474-2f18-4b2e-9200-1195d1515ce4",
-                            ConcurrencyStamp = "1da95452-8b03-43f3-a177-ff663d7f58cc",
+                            Id = "3f3c6bb5-cf15-45f2-9705-8209ae57b8e0",
+                            ConcurrencyStamp = "eb8316bf-bbcf-498d-b5c7-71b1aa8e7d74",
                             Name = "Visitor",
                             NormalizedName = "VISITOR"
                         },
                         new
                         {
-                            Id = "019df47e-27f8-40b5-83ba-50ef3839206f",
-                            ConcurrencyStamp = "85309296-48b6-432f-b5a1-87f6c04ec300",
+                            Id = "ee9de740-35b6-4352-a8b0-52692cd725af",
+                            ConcurrencyStamp = "daaf183b-2571-4f72-a256-b11bf2df00f1",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -332,11 +334,11 @@ namespace rmicore.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("UserId")
+                    b.Property<int>("RiderId")
                         .HasColumnType("int");
 
-                    b.Property<string>("firstName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.Property<string>("individual_firstName")
                         .HasColumnType("nvarchar(max)");
@@ -348,8 +350,6 @@ namespace rmicore.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Individual");
                 });
@@ -691,15 +691,6 @@ namespace rmicore.Migrations
                     b.HasOne("rmicore.Entities.Rider", null)
                         .WithMany("Addresses")
                         .HasForeignKey("RiderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("rmicore.Entities.Individual", b =>
-                {
-                    b.HasOne("rmicore.Entities.User", null)
-                        .WithMany("Individuals")
-                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -1,4 +1,5 @@
-﻿using rmicore.Entities;
+﻿using rmicore.Dtos;
+using rmicore.Entities;
 using rmicore.Interface;
 using rmicore.Repository;
 using rmicore.ViewModels;
@@ -18,14 +19,14 @@ namespace rmicore.Services
 
         }
 
-        public Rider GetRiderById(int riderId)
+        public User GetRiderById(int riderId)
         {
             return  _riderRepository.GetRiderById(riderId);
         }
 
 
 
-        public RiderViewModel PopulateRiderViewModel(Rider rider, RiderViewModel viewModel)
+        public RiderViewModel PopulateRiderViewModel(User rider, RiderViewModel viewModel)
         {
            
             viewModel.Id = rider.Id;
@@ -39,9 +40,9 @@ namespace rmicore.Services
         }
 
 
-        public bool FullPagePost(RiderViewModel viewModel)
+        public bool FullPagePost(riderDto riderDto)
         {
-            bool individualReturn = AddOrUpdateIndividualDetails(viewModel);
+            bool individualReturn = AddOrUpdateIndividualDetails(riderDto);
             //bool statusReturn = AddOrUpdateStatusDetails(viewModel);
             //bool occupationReturn = AddOrUpdateOccupationDetails(viewModel);
             //bool vehicleUseReturn = AddOrUpdateVehicleUseDetails(viewModel); 
@@ -51,22 +52,23 @@ namespace rmicore.Services
             return blReturn;
         }
 
-        private bool AddOrUpdateIndividualDetails(RiderViewModel viewModel)
+        private bool AddOrUpdateIndividualDetails(riderDto riderDto)
         {
             bool blReturn = true;
 
             try
             {
 
-                Individual individual = new Individual();
-                individual.RiderId = viewModel.Id;
+
+                Individual individual = riderDto.individual;
+                individual.UserId = riderDto.Id;
 
                 //Person comes in here?
                 //Person ID is set
 
                 //Try validating on a per class basis here
                 //    blReturn =  _riderRepository.AddIndividualToDatabase(individual);
-                var dbValue = GetIndividualById(viewModel.Id);
+                var dbValue = GetIndividualById(riderDto.Id);
 
                 blReturn = (dbValue == null) ? _riderRepository.AddIndividualToDatabase(individual) : _riderRepository.EditObjectInDatabase(dbValue, individual);
 

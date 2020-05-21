@@ -1,4 +1,5 @@
-﻿using rmicore.Entities;
+﻿using rmicore.Dtos;
+using rmicore.Entities;
 using rmicore.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -9,11 +10,11 @@ namespace rmicore.Interface
 {
     public interface IRiderService
     {
-        Rider GetRiderById(int riderId);
+        User GetRiderById(int riderId);
 
-        RiderViewModel PopulateRiderViewModel(Rider rider, RiderViewModel viewModel);
+        RiderViewModel PopulateRiderViewModel(User rider, RiderViewModel viewModel);
 
-        bool FullPagePost(RiderViewModel viewModel);
+        bool FullPagePost(riderDto viewModel);
 
        
     }

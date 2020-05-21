@@ -1,4 +1,6 @@
-﻿using rmicore.Entities;
+﻿using rmicore.Dtos;
+using rmicore.Entities;
+using rmicore.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +10,8 @@ namespace rmicore.Interface
 {
     public interface IDataService
     {
+        public riderDto MapViewModelToDto(RiderViewModel riderViewModel);
+
         public List<SimpleReactObjectViewModel> GetAllTitles();
 
         public List<SimpleReactObjectViewModel> GetAllOccupations();

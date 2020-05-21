@@ -16,7 +16,7 @@ namespace rmicore.Entities
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
-        public virtual Individual Individual { get; set; }
+    
         public virtual ICollection<Address> Addresses { get; set; }
 
         

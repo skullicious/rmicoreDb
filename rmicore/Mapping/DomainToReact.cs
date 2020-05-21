@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using rmicore.Dtos;
 using rmicore.Entities;
+using rmicore.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,16 @@ namespace rmicore.Mapping
         {
             CreateMap<User, UserDto>();
             CreateMap<UserDto, User>();
+
+
+            CreateMap<RiderViewModel, riderDto>()
+                .ForPath(dest => dest.individual.individual_firstName, opt =>
+                 opt.MapFrom(src => src.individual_firstName))
+                 .ForPath(dest => dest.individual.individual_lastName, opt =>
+                 opt.MapFrom(src => src.individual_lastName))
+                  .ForPath(dest => dest.individual.individual_title, opt =>
+                 opt.MapFrom(src => src.individual_title));                
+
 
 
             CreateMap<Title, SimpleReactObjectViewModel>()

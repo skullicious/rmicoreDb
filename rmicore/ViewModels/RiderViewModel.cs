@@ -12,11 +12,14 @@ namespace rmicore.ViewModels
         public RiderViewModel()
         {
             //rider = new Rider();
-            //rider.Individual = new Individual();
+           individual = new Individual();
             
         }
 
         public int Id { get; set; }
+       
+        public Individual individual { get; set; }
+        
         public string individual_title { get; set; }
 
         public string individual_firstName { get; set; }
@@ -44,6 +47,8 @@ namespace rmicore.ViewModels
         public string vehicleUse_licenseRestriction { get; set; }
 
         public string vehicleUse_motoringQualification { get; set; }
+
+        
 
         //public Rider rider { get; set; }
 

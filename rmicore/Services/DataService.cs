@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using rmicore.Dtos;
 using rmicore.Entities;
 using rmicore.Interface;
 using rmicore.Repository;
+using rmicore.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +23,16 @@ namespace rmicore.Services
         {
             _mapper = mapper;
             _dataRepository = dataRepository;
+        }
+
+        
+        public riderDto MapViewModelToDto(RiderViewModel riderViewModel)
+        {
+            
+
+            var result = _mapper.Map<RiderViewModel, riderDto>(riderViewModel);
+
+            return result;
         }
 
         public List<SimpleReactObjectViewModel> GetAllTitles()

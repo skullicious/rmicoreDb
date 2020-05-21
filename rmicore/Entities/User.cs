@@ -14,6 +14,8 @@ namespace rmicore.Entities
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
 
+        public virtual ICollection<Individual> Individuals {get; set;}   
+
         public virtual ICollection<Rider> Riders { get; set; }
     }
 }

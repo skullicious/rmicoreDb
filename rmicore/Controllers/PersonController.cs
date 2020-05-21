@@ -19,12 +19,15 @@ namespace rmicore.Controllers
     public class PersonController : ControllerBase
     {
 
+        
 
         private readonly IRiderService _riderService;
+        private readonly IDataService _dataService;
 
-        public PersonController(IRiderService riderService)
+        public PersonController(IRiderService riderService, IDataService dataService)
         {
             _riderService = riderService;
+            _dataService = dataService;
         }
 
 
@@ -39,7 +42,14 @@ namespace rmicore.Controllers
         [HttpPost("rider/save")]
         public IActionResult SaveRider([FromBody]RiderViewModel riderVm)      
         {
-            _riderService.FullPagePost(riderVm);
+
+
+            //MAP RIDER TO VM TO DTO
+           var riderDto = _dataService.MapViewModelToDto(riderVm);
+
+
+
+            _riderService.FullPagePost(riderDto);
 
             return Ok();
         }
@@ -49,13 +59,13 @@ namespace rmicore.Controllers
         [HttpPut("rider/{id}")]
         public IActionResult RiderDetails(int id, [FromBody]UserDto userDto)
         {
-            Rider rider = _riderService.GetRiderById(userDto.Id);
-            if (rider == null)
+            User user = _riderService.GetRiderById(userDto.Id);
+            if (user == null)
                 //return RedirectToAction("Proposer", "Proposers", new { policyType = "Rider" });
                 return Ok();
 
             RiderViewModel viewModel = new RiderViewModel();
-            viewModel = _riderService.PopulateRiderViewModel(rider, viewModel);
+            viewModel = _riderService.PopulateRiderViewModel(user, viewModel);
 
            
 

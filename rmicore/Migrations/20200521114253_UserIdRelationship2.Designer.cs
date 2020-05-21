@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using rmicore;
 
 namespace rmicore.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20200521114253_UserIdRelationship2")]
+    partial class UserIdRelationship2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,15 +50,15 @@ namespace rmicore.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "717ed474-2f18-4b2e-9200-1195d1515ce4",
-                            ConcurrencyStamp = "1da95452-8b03-43f3-a177-ff663d7f58cc",
+                            Id = "7099ff45-8587-4150-856f-cb67e509ca29",
+                            ConcurrencyStamp = "07d2bf31-397c-4aae-97ff-46ae0b51b04c",
                             Name = "Visitor",
                             NormalizedName = "VISITOR"
                         },
                         new
                         {
-                            Id = "019df47e-27f8-40b5-83ba-50ef3839206f",
-                            ConcurrencyStamp = "85309296-48b6-432f-b5a1-87f6c04ec300",
+                            Id = "e01dee48-fbb6-4a87-9bdb-e064eefdcaa6",
+                            ConcurrencyStamp = "47e08a2a-72d4-41b2-9f82-a076ead934d6",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -332,11 +334,11 @@ namespace rmicore.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("UserId")
+                    b.Property<int>("RiderId")
                         .HasColumnType("int");
 
-                    b.Property<string>("firstName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.Property<string>("individual_firstName")
                         .HasColumnType("nvarchar(max)");

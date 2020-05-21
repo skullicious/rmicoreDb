@@ -17,9 +17,9 @@ namespace rmicore.Repository
             _db = connection;
         }
 
-        public Rider GetRiderById(int riderId)
+        public User GetRiderById(int riderId)
         {
-            return _db.Rider.Find(riderId);
+            return _db.Users.Find(riderId);
         }
 
 
@@ -45,7 +45,7 @@ namespace rmicore.Repository
 
         public Individual GetIndividualById(int riderId)
         {
-            return _db.Individual.Find(riderId);
+            return _db.Individual.FirstOrDefault(s => s.UserId == riderId);
         }
 
 

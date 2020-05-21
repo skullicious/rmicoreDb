@@ -10,13 +10,15 @@ namespace rmicore.Entities
 
         public int Id { get; set; }
 
-        public int RiderId { get; set; }
+        public int UserId { get; set; }       
 
         public string individual_title { get; set; }
 
         public string individual_firstName { get; set; }
 
         public string individual_lastName { get; set; }
+
+        public string firstName { get; set; }
 
 
     }
