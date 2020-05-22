@@ -13,9 +13,11 @@ namespace rmicore.Services
     public class RiderService : IRiderService
     {
         private readonly IRiderRepository _riderRepository;
-        public RiderService(IRiderRepository riderRepository)
+
+        public RiderService(IRiderRepository riderRepository, IDataService dataService)
         {
             _riderRepository = riderRepository;
+       
 
         }
 
@@ -30,6 +32,9 @@ namespace rmicore.Services
         {
            
             viewModel.Id = rider.Id;
+            viewModel.individual = GetIndividualById(rider.Id);
+                        
+            
             //viewModel.Person.Status = await GetStatusById(person.Id, new ProposerStatus()) ?? new ProposerStatus() { Person = person };
             //viewModel.Person.LicenceUse = await GetLicenceById(person.Id, new RiderLicence()) ?? new RiderLicence() { Person = person };
             //viewModel.OccupationVM = await PopulateOccupationViewModel(person.Id);

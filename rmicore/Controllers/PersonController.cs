@@ -67,7 +67,36 @@ namespace rmicore.Controllers
             RiderViewModel viewModel = new RiderViewModel();
             viewModel = _riderService.PopulateRiderViewModel(user, viewModel);
 
-           
+
+            //viewModel.Id = userDto.Id;
+
+            //viewModel.individual_firstName = "Damo";
+
+            //viewModel.individual_lastName = "Sweeno";
+
+            //viewModel.individual_title = "2";
+
+            //viewModel.status_postcode = "UB6 8SX";
+
+            //viewModel.status_email = "damien.sweeney81@googlemail.com";
+
+            //viewModel.status_contactNumber = "02085781356";
+
+            //viewModel.occupation_employmentType = "3";
+
+            //viewModel.occupation_occupation = "4";
+
+            //viewModel.occupation_occupationStatus = "2";
+
+            //viewModel.occupation_partTime = "false";
+
+            //viewModel.vehicleUse_vehicleUse = "1";
+
+            //viewModel.vehicleUse_licenseType = "4";
+
+            //viewModel.vehicleUse_licenseRestriction = "false";
+
+            //viewModel.vehicleUse_motoringQualification = "true";
 
             return Ok(viewModel);
         }
@@ -75,46 +104,46 @@ namespace rmicore.Controllers
 
 
 
-        [HttpPut("test/{id}")] // GET /api/test/titles/
-        public IActionResult GetTitles(int id, [FromBody]UserDto userDto)
+        //[HttpPut("test/{id}")] // GET /api/test/titles/
+        //public IActionResult GetTitles(int id, [FromBody]UserDto userDto)
 
           
-        {
-            RiderViewModel viewModel = new RiderViewModel();
+        //{
+        //    RiderViewModel viewModel = new RiderViewModel();
 
-            viewModel.Id = userDto.Id;
+        //    viewModel.Id = userDto.Id;
 
-            viewModel.individual_firstName = "Damo";
+        //    viewModel.individual_firstName = "Damo";
 
-            viewModel.individual_lastName = "Sweeno";
+        //    viewModel.individual_lastName = "Sweeno";
 
-            viewModel.individual_title = "2";
+        //    viewModel.individual_title = "2";
 
-            viewModel.status_postcode = "UB6 8SX";
+        //    viewModel.status_postcode = "UB6 8SX";
             
-            viewModel.status_email = "damien.sweeney81@googlemail.com";
+        //    viewModel.status_email = "damien.sweeney81@googlemail.com";
 
-            viewModel.status_contactNumber = "02085781356";
+        //    viewModel.status_contactNumber = "02085781356";
 
-            viewModel.occupation_employmentType = "3";
+        //    viewModel.occupation_employmentType = "3";
 
-            viewModel.occupation_occupation = "4";
+        //    viewModel.occupation_occupation = "4";
 
-            viewModel.occupation_occupationStatus = "2";
+        //    viewModel.occupation_occupationStatus = "2";
 
-            viewModel.occupation_partTime = "false";
+        //    viewModel.occupation_partTime = "false";
 
-            viewModel.vehicleUse_vehicleUse = "1";
+        //    viewModel.vehicleUse_vehicleUse = "1";
 
-            viewModel.vehicleUse_licenseType = "4";
+        //    viewModel.vehicleUse_licenseType = "4";
 
-            viewModel.vehicleUse_licenseRestriction = "false";
+        //    viewModel.vehicleUse_licenseRestriction = "false";
 
-            viewModel.vehicleUse_motoringQualification = "true";
+        //    viewModel.vehicleUse_motoringQualification = "true";
 
 
           
-            return Ok(viewModel);
-        }
+        //    return Ok(viewModel);
+        //}
     }
 }
