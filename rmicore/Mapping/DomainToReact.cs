@@ -22,12 +22,21 @@ namespace rmicore.Mapping
 
 
             CreateMap<RiderViewModel, riderDto>()
+                .ForPath(dest => dest.individual.Id, opt =>
+                 opt.MapFrom(src => src.individual.Id))
                 .ForPath(dest => dest.individual.firstName, opt =>
                  opt.MapFrom(src => src.individual.firstName))
                  .ForPath(dest => dest.individual.lastName, opt =>
                  opt.MapFrom(src => src.individual.lastName))
                   .ForPath(dest => dest.individual.title, opt =>
-                 opt.MapFrom(src => src.individual.title));                
+                 opt.MapFrom(src => src.individual.title))
+                  .ForPath(dest => dest.address.PostCode, opt =>
+                 opt.MapFrom(src => src.contact.address.PostCode))
+                    .ForPath(dest => dest.email.EmailAddress, opt =>
+                 opt.MapFrom(src => src.contact.Email.EmailAddress));
+            ;
+
+
 
 
 

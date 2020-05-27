@@ -9,7 +9,7 @@ namespace rmicore.Entities
     {
         public int Id { get; set; }
 
-        public int RiderId { get; set; }
+        public int UserId { get; set; }
 
         public int TypeId { get; set; }
 

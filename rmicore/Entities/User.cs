@@ -16,6 +16,8 @@ namespace rmicore.Entities
 
         public virtual ICollection<Individual> Individuals {get; set;}   
 
+        public virtual Address Address { get; set; }
+
         public virtual ICollection<Rider> Riders { get; set; }
     }
 }

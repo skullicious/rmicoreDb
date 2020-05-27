@@ -23,6 +23,8 @@ namespace rmicore.Repository
         }
 
 
+
+
         public bool AddIndividualToDatabase(Individual individual)
         {
             bool blSuccess = true;
@@ -43,9 +45,60 @@ namespace rmicore.Repository
             return blSuccess;
         }
 
+        public bool AddAddressToDatabase(Address address)
+        {
+            bool blSuccess = true;
+            try
+            {
+                if (address == null)
+                    return false;
+                else
+                    _db.Address.Add(address);
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                //Logger.Error("Failed AddIndividualToDatabase\n" + ex);
+                //Logger.Error(ex.GetAllMessages());
+                blSuccess = false;
+            }
+            return blSuccess;
+        }
+
+        public bool AddEmailToDatabase(Email email)
+        {
+            bool blSuccess = true;
+            try
+            {
+                if (email == null)
+                    return false;
+                else
+                    _db.Email.Add(email);  // KEY ISSUE HERE TAKE A LOOK
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                //Logger.Error("Failed AddIndividualToDatabase\n" + ex);
+                //Logger.Error(ex.GetAllMessages());
+                blSuccess = false;
+            }
+            return blSuccess;
+        }
+
         public Individual GetIndividualById(int riderId)
         {
             return _db.Individual.FirstOrDefault(s => s.UserId == riderId);
+        }
+
+
+        public Address GetAddressById(int riderId)
+        {
+            return _db.Address.FirstOrDefault(s => s.UserId == riderId);
+        }
+
+        public Email GetEmailById(int riderId)
+        {
+            return _db.Email.FirstOrDefault(s => s.UserId == riderId);
         }
 
 

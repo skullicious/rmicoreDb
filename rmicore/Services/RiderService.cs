@@ -33,6 +33,8 @@ namespace rmicore.Services
            
             viewModel.Id = rider.Id;
             viewModel.individual = GetIndividualById(rider.Id);
+            viewModel.contact.address = GetAddressById(rider.Id);
+            viewModel.contact.Email = GetEmailById(rider.Id);
                         
             
             //viewModel.Person.Status = await GetStatusById(person.Id, new ProposerStatus()) ?? new ProposerStatus() { Person = person };
@@ -48,11 +50,13 @@ namespace rmicore.Services
         public bool FullPagePost(riderDto riderDto)
         {
             bool individualReturn = AddOrUpdateIndividualDetails(riderDto);
+            bool addressReturn = AddOrUpdateAddress(riderDto);
+            bool emailReturn = AddOrUpdateEmail(riderDto);
             //bool statusReturn = AddOrUpdateStatusDetails(viewModel);
             //bool occupationReturn = AddOrUpdateOccupationDetails(viewModel);
             //bool vehicleUseReturn = AddOrUpdateVehicleUseDetails(viewModel); 
 
-            bool blReturn = individualReturn;
+            bool blReturn = individualReturn && addressReturn && emailReturn;
             //bool blReturn = (licenceReturn && statusReturn && contactReturn && indivReturn);
             return blReturn;
         }
@@ -63,7 +67,6 @@ namespace rmicore.Services
 
             try
             {
-
 
                 Individual individual = riderDto.individual;
                 individual.UserId = riderDto.Id;
@@ -77,7 +80,29 @@ namespace rmicore.Services
 
                 blReturn = (dbValue == null) ? _riderRepository.AddIndividualToDatabase(individual) : _riderRepository.EditObjectInDatabase(dbValue, individual);
 
+            }
 
+            catch (Exception ex)
+            {
+
+            }
+
+            return blReturn;
+        }
+
+
+        private bool AddOrUpdateEmail(riderDto riderDto)
+        {
+            bool blReturn = true;
+
+            try
+            {
+                Email email = riderDto.email;
+                email.UserId = riderDto.Id;
+
+                var dbValue = GetEmailById(riderDto.Id);
+
+                blReturn = (dbValue == null) ? _riderRepository.AddEmailToDatabase(email) : _riderRepository.EditObjectInDatabase(dbValue, email);
 
             }
 
@@ -87,13 +112,45 @@ namespace rmicore.Services
             }
 
             return blReturn;
-
         }
 
 
+        private bool AddOrUpdateAddress(riderDto riderDto)
+        {
+            bool blReturn = true;
+
+            try
+            {
+                Address address = riderDto.address;
+                address.UserId = riderDto.Id;
+
+                var dbValue = GetAddressById(riderDto.Id);
+
+                blReturn = (dbValue == null) ? _riderRepository.AddAddressToDatabase(address) : _riderRepository.EditObjectInDatabase(dbValue, address);
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return blReturn;
+
+        }
+
+        private Email GetEmailById(int riderId)
+        {
+            return _riderRepository.GetEmailById(riderId);
+
+        }
+
+        private Address GetAddressById(int riderId)
+        {
+            return _riderRepository.GetAddressById(riderId);
+        }
+
         private Individual GetIndividualById(int riderId)
         {
-
             return _riderRepository.GetIndividualById(riderId);
         }
 

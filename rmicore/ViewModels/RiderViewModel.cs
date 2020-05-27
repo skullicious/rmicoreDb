@@ -13,13 +13,24 @@ namespace rmicore.ViewModels
         {
             //rider = new Rider();
            individual = new Individual();
+
+           contact = new Contact();
+
+           contact.address = new Address();
+
+            contact.Email = new Email();
             
         }
 
         public int Id { get; set; }
        
         public Individual individual { get; set; }
-        
+
+        public Contact contact { get; set; }
+
+        public Email email { get; set; }
+
+
         //public string individual_title { get; set; }
 
         //public string individual_firstName { get; set; }
@@ -48,11 +59,11 @@ namespace rmicore.ViewModels
 
         //public string vehicleUse_motoringQualification { get; set; }
 
-        
+
 
         //public Rider rider { get; set; }
 
-   
+
 
 
     }

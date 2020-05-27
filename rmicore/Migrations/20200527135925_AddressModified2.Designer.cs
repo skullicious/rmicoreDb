@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using rmicore;
 
 namespace rmicore.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20200527135925_AddressModified2")]
+    partial class AddressModified2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,15 +50,15 @@ namespace rmicore.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "31439a11-a7da-4696-b004-c1aad6f09552",
-                            ConcurrencyStamp = "e9f24d56-6ad8-4e80-ad4e-567b9aa4ba6c",
+                            Id = "83ec62f7-28f6-4097-9c5a-ab8a1fdea0c1",
+                            ConcurrencyStamp = "4b57c768-54e5-42e9-b001-17264913ed62",
                             Name = "Visitor",
                             NormalizedName = "VISITOR"
                         },
                         new
                         {
-                            Id = "b4da576b-fcf4-416b-8301-8f4738fc4392",
-                            ConcurrencyStamp = "e73c9176-dc7b-48b6-875c-12539a21a312",
+                            Id = "46c72f8e-1ce2-4ad1-b4a4-81061b6dd761",
+                            ConcurrencyStamp = "44244d74-7ae3-47c2-8aff-693a1a58c689",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -282,21 +284,6 @@ namespace rmicore.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("rmicore.Entities.Email", b =>
-                {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("EmailAddress")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("Email");
                 });
 
             modelBuilder.Entity("rmicore.Entities.EmploymentType", b =>

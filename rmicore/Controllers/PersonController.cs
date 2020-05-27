@@ -17,10 +17,7 @@ namespace rmicore.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class PersonController : ControllerBase
-    {
-
-        
-
+    {       
         private readonly IRiderService _riderService;
         private readonly IDataService _dataService;
 
@@ -29,32 +26,20 @@ namespace rmicore.Controllers
             _riderService = riderService;
             _dataService = dataService;
         }
-
-
-        //private static readonly string[] Summaries = new[]
-        // {
-        //    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        //};
-
-
-
+             
 
         [HttpPost("rider/save")]
         public IActionResult SaveRider([FromBody]RiderViewModel riderVm)      
         {
 
-
             //MAP RIDER TO VM TO DTO
            var riderDto = _dataService.MapViewModelToDto(riderVm);
-
-
 
             _riderService.FullPagePost(riderDto);
 
             return Ok();
         }
-
-       
+               
 
         [HttpPut("rider/{id}")]
         public IActionResult RiderDetails(int id, [FromBody]UserDto userDto)
@@ -67,83 +52,7 @@ namespace rmicore.Controllers
             RiderViewModel viewModel = new RiderViewModel();
             viewModel = _riderService.PopulateRiderViewModel(user, viewModel);
 
-
-            //viewModel.Id = userDto.Id;
-
-            //viewModel.individual_firstName = "Damo";
-
-            //viewModel.individual_lastName = "Sweeno";
-
-            //viewModel.individual_title = "2";
-
-            //viewModel.status_postcode = "UB6 8SX";
-
-            //viewModel.status_email = "damien.sweeney81@googlemail.com";
-
-            //viewModel.status_contactNumber = "02085781356";
-
-            //viewModel.occupation_employmentType = "3";
-
-            //viewModel.occupation_occupation = "4";
-
-            //viewModel.occupation_occupationStatus = "2";
-
-            //viewModel.occupation_partTime = "false";
-
-            //viewModel.vehicleUse_vehicleUse = "1";
-
-            //viewModel.vehicleUse_licenseType = "4";
-
-            //viewModel.vehicleUse_licenseRestriction = "false";
-
-            //viewModel.vehicleUse_motoringQualification = "true";
-
             return Ok(viewModel);
         }
-
-
-
-
-        //[HttpPut("test/{id}")] // GET /api/test/titles/
-        //public IActionResult GetTitles(int id, [FromBody]UserDto userDto)
-
-          
-        //{
-        //    RiderViewModel viewModel = new RiderViewModel();
-
-        //    viewModel.Id = userDto.Id;
-
-        //    viewModel.individual_firstName = "Damo";
-
-        //    viewModel.individual_lastName = "Sweeno";
-
-        //    viewModel.individual_title = "2";
-
-        //    viewModel.status_postcode = "UB6 8SX";
-            
-        //    viewModel.status_email = "damien.sweeney81@googlemail.com";
-
-        //    viewModel.status_contactNumber = "02085781356";
-
-        //    viewModel.occupation_employmentType = "3";
-
-        //    viewModel.occupation_occupation = "4";
-
-        //    viewModel.occupation_occupationStatus = "2";
-
-        //    viewModel.occupation_partTime = "false";
-
-        //    viewModel.vehicleUse_vehicleUse = "1";
-
-        //    viewModel.vehicleUse_licenseType = "4";
-
-        //    viewModel.vehicleUse_licenseRestriction = "false";
-
-        //    viewModel.vehicleUse_motoringQualification = "true";
-
-
-          
-        //    return Ok(viewModel);
-        //}
     }
 }

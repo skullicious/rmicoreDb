@@ -16,6 +16,9 @@ namespace rmicore.Dtos
 
         public int Id { get; set; }
         public Individual individual { get; set;}
+        public Address address { get; set; }
+
+        public Email email { get; set; }
 
     }
 }

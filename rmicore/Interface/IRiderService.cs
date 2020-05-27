@@ -12,6 +12,8 @@ namespace rmicore.Interface
     {
         User GetRiderById(int riderId);
 
+        
+
         RiderViewModel PopulateRiderViewModel(User rider, RiderViewModel viewModel);
 
         bool FullPagePost(riderDto viewModel);
