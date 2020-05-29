@@ -35,6 +35,8 @@ namespace rmicore.Services
             viewModel.individual = GetIndividualById(rider.Id);
             viewModel.contact.address = GetAddressById(rider.Id);
             viewModel.contact.Email = GetEmailById(rider.Id);
+            viewModel.contact.phoneNumber = GetPhoneNumberById(rider.Id);
+          
                         
             
             //viewModel.Person.Status = await GetStatusById(person.Id, new ProposerStatus()) ?? new ProposerStatus() { Person = person };
@@ -52,11 +54,12 @@ namespace rmicore.Services
             bool individualReturn = AddOrUpdateIndividualDetails(riderDto);
             bool addressReturn = AddOrUpdateAddress(riderDto);
             bool emailReturn = AddOrUpdateEmail(riderDto);
+            bool phoneNumberReturn = AddOrUpdatePhoneNumber(riderDto);
             //bool statusReturn = AddOrUpdateStatusDetails(viewModel);
             //bool occupationReturn = AddOrUpdateOccupationDetails(viewModel);
             //bool vehicleUseReturn = AddOrUpdateVehicleUseDetails(viewModel); 
 
-            bool blReturn = individualReturn && addressReturn && emailReturn;
+            bool blReturn = individualReturn && addressReturn && emailReturn && phoneNumberReturn;
             //bool blReturn = (licenceReturn && statusReturn && contactReturn && indivReturn);
             return blReturn;
         }
@@ -90,6 +93,30 @@ namespace rmicore.Services
             return blReturn;
         }
 
+
+        private bool AddOrUpdatePhoneNumber(riderDto riderDto)
+        {
+            bool blReturn = true;
+
+            try
+            {
+                PhoneNumber phoneNumber = riderDto.phoneNumber;
+
+                var riderId = riderDto.Id;
+
+                var dbValue = GetPhoneNumberById(riderId);
+
+                blReturn = (dbValue == null) ? _riderRepository.AddPhoneNumberToDatabase(riderId,phoneNumber) : _riderRepository.EditObjectInDatabase(dbValue, phoneNumber);
+
+            }
+
+            catch (Exception ex)
+            {
+
+            }
+
+            return blReturn;
+        }
 
         private bool AddOrUpdateEmail(riderDto riderDto)
         {
@@ -138,6 +165,12 @@ namespace rmicore.Services
 
         }
 
+
+        private PhoneNumber GetPhoneNumberById(int riderId)
+        {
+            return _riderRepository.GetPhoneNumberById(riderId);
+
+        }
         private Email GetEmailById(int riderId)
         {
             return _riderRepository.GetEmailById(riderId);

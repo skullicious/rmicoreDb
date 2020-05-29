@@ -20,5 +20,6 @@ namespace rmicore.Dtos
 
         public Email email { get; set; }
 
+        public PhoneNumber phoneNumber { get; set; }
     }
 }

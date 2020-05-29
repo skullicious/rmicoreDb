@@ -10,7 +10,7 @@ namespace rmicore.Entities
 
         public int Id { get; set; }
 
-        public int UserId { get; set; }       
+        public int UserId { get; set; }                 
 
         public string title { get; set; }              
 

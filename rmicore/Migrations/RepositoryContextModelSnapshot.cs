@@ -48,15 +48,15 @@ namespace rmicore.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "31439a11-a7da-4696-b004-c1aad6f09552",
-                            ConcurrencyStamp = "e9f24d56-6ad8-4e80-ad4e-567b9aa4ba6c",
+                            Id = "b911a6bf-eaa0-4299-8de1-b624c973b9cd",
+                            ConcurrencyStamp = "c8a8fc9d-cec6-45ed-9fd3-b2b82e470555",
                             Name = "Visitor",
                             NormalizedName = "VISITOR"
                         },
                         new
                         {
-                            Id = "b4da576b-fcf4-416b-8301-8f4738fc4392",
-                            ConcurrencyStamp = "e73c9176-dc7b-48b6-875c-12539a21a312",
+                            Id = "3697c0c5-a7a4-40f5-b177-a33b28f800cc",
+                            ConcurrencyStamp = "fa5d87a0-d7fb-4b91-a22d-82b9d6ccf726",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -286,7 +286,7 @@ namespace rmicore.Migrations
 
             modelBuilder.Entity("rmicore.Entities.Email", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int>("EmailId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -294,7 +294,13 @@ namespace rmicore.Migrations
                     b.Property<string>("EmailAddress")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserId");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("EmailId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Email");
                 });
@@ -508,6 +514,26 @@ namespace rmicore.Migrations
                         });
                 });
 
+            modelBuilder.Entity("rmicore.Entities.PhoneNumber", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Number")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("PhoneNumbers");
+                });
+
             modelBuilder.Entity("rmicore.Entities.Rider", b =>
                 {
                     b.Property<int>("Id")
@@ -717,10 +743,28 @@ namespace rmicore.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("rmicore.Entities.Email", b =>
+                {
+                    b.HasOne("rmicore.Entities.User", null)
+                        .WithOne("email")
+                        .HasForeignKey("rmicore.Entities.Email", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("rmicore.Entities.Individual", b =>
                 {
                     b.HasOne("rmicore.Entities.User", null)
                         .WithMany("Individuals")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("rmicore.Entities.PhoneNumber", b =>
+                {
+                    b.HasOne("rmicore.Entities.User", null)
+                        .WithMany("PhoneNumbers")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

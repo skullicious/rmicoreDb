@@ -15,6 +15,8 @@ namespace rmicore.Entities
         public Address address { get; set; }     
         
         public Email Email { get; set; }
+
+        public PhoneNumber phoneNumber { get; set; }
            
 
     }

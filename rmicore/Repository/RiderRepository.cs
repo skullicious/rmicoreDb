@@ -85,6 +85,30 @@ namespace rmicore.Repository
             return blSuccess;
         }
 
+        public bool AddPhoneNumberToDatabase(int riderId, PhoneNumber phoneNumber)
+        {
+            bool blSuccess = true;
+            try
+            {
+                if (phoneNumber == null)
+                    return false;
+                else
+                {
+                    User rider = GetRiderById(riderId);
+                    rider.PhoneNumbers.Add(phoneNumber);
+                  
+                    _db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                //Logger.Error("Failed AddIndividualToDatabase\n" + ex);
+                //Logger.Error(ex.GetAllMessages());
+                blSuccess = false;
+            }
+            return blSuccess;
+        }
+
         public Individual GetIndividualById(int riderId)
         {
             return _db.Individual.FirstOrDefault(s => s.UserId == riderId);
@@ -99,6 +123,17 @@ namespace rmicore.Repository
         public Email GetEmailById(int riderId)
         {
             return _db.Email.FirstOrDefault(s => s.UserId == riderId);
+
+         
+        }
+
+        public PhoneNumber GetPhoneNumberById(int riderId)
+        {
+           
+            return _db.PhoneNumbers.FirstOrDefault(s => s.Id == riderId);
+
+         
+
         }
 
 

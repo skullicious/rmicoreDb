@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Reflection;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
+
 namespace rmicore
 {
     public class RepositoryContext: IdentityDbContext<Client>
@@ -15,6 +16,8 @@ namespace rmicore
         public RepositoryContext(DbContextOptions options)
             :base(options)
         {
+
+   
         }
 
 
@@ -28,8 +31,11 @@ namespace rmicore
         public DbSet<LicenseType> LicenseTypes { get; set; }
         public DbSet<Individual> Individual { get; set; }
         public DbSet<Address> Address { get; set; }
-
+      
         public DbSet<Email> Email { get; set; }
+
+        public DbSet<PhoneNumber> PhoneNumbers { get; set; }
+           
         public DbSet<Rider> Rider { get; set; }
       
 

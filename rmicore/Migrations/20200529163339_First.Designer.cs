@@ -10,8 +10,8 @@ using rmicore;
 namespace rmicore.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20200518124720_AddressAddedToRider")]
-    partial class AddressAddedToRider
+    [Migration("20200529163339_First")]
+    partial class First
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,15 +50,15 @@ namespace rmicore.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "828bee30-8405-4be4-a766-011833b1b2ea",
-                            ConcurrencyStamp = "730bc1ad-e64c-432f-8bd5-0a793237fb13",
+                            Id = "b911a6bf-eaa0-4299-8de1-b624c973b9cd",
+                            ConcurrencyStamp = "c8a8fc9d-cec6-45ed-9fd3-b2b82e470555",
                             Name = "Visitor",
                             NormalizedName = "VISITOR"
                         },
                         new
                         {
-                            Id = "4ad095f0-7e4e-4852-9c61-f2675e45c37c",
-                            ConcurrencyStamp = "448b2f04-f648-4364-832b-661bcfa0af81",
+                            Id = "3697c0c5-a7a4-40f5-b177-a33b28f800cc",
+                            ConcurrencyStamp = "fa5d87a0-d7fb-4b91-a22d-82b9d6ccf726",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -196,15 +196,21 @@ namespace rmicore.Migrations
                     b.Property<string>("PostCode")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RiderId")
+                    b.Property<int?>("RiderId")
                         .HasColumnType("int");
 
                     b.Property<int>("TypeId")
                         .HasColumnType("int");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("RiderId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Address");
                 });
@@ -280,6 +286,27 @@ namespace rmicore.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("rmicore.Entities.Email", b =>
+                {
+                    b.Property<int>("EmailId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("EmailAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("EmailId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("Email");
+                });
+
             modelBuilder.Entity("rmicore.Entities.EmploymentType", b =>
                 {
                     b.Property<int>("EmploymentTypeId")
@@ -325,6 +352,32 @@ namespace rmicore.Migrations
                             EmploymentTypeId = 6,
                             Name = "Local Government"
                         });
+                });
+
+            modelBuilder.Entity("rmicore.Entities.Individual", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("firstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("lastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Individual");
                 });
 
             modelBuilder.Entity("rmicore.Entities.LicenseType", b =>
@@ -461,6 +514,26 @@ namespace rmicore.Migrations
                             OccupationStatusId = 4,
                             Name = "Contractor"
                         });
+                });
+
+            modelBuilder.Entity("rmicore.Entities.PhoneNumber", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Number")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("PhoneNumbers");
                 });
 
             modelBuilder.Entity("rmicore.Entities.Rider", b =>
@@ -663,7 +736,38 @@ namespace rmicore.Migrations
                 {
                     b.HasOne("rmicore.Entities.Rider", null)
                         .WithMany("Addresses")
-                        .HasForeignKey("RiderId")
+                        .HasForeignKey("RiderId");
+
+                    b.HasOne("rmicore.Entities.User", null)
+                        .WithOne("Address")
+                        .HasForeignKey("rmicore.Entities.Address", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("rmicore.Entities.Email", b =>
+                {
+                    b.HasOne("rmicore.Entities.User", null)
+                        .WithOne("email")
+                        .HasForeignKey("rmicore.Entities.Email", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("rmicore.Entities.Individual", b =>
+                {
+                    b.HasOne("rmicore.Entities.User", null)
+                        .WithMany("Individuals")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("rmicore.Entities.PhoneNumber", b =>
+                {
+                    b.HasOne("rmicore.Entities.User", null)
+                        .WithMany("PhoneNumbers")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
