@@ -46,5 +46,10 @@ namespace rmicore.Repository
         {
             return _db.LicenseTypes.ToList();
         }
+
+        public List<CycleUse> GetAllCycleUses()
+        {
+            return _db.CycleUses.ToList();
+        }
     }
 }

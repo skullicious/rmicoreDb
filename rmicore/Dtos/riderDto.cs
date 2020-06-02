@@ -21,5 +21,9 @@ namespace rmicore.Dtos
         public Email email { get; set; }
 
         public PhoneNumber phoneNumber { get; set; }
+
+        public RiderOccupation occupation { get; set; }
+
+        public RiderCycleUse cycleUse { get; set; }
     }
 }

@@ -99,5 +99,15 @@ namespace rmicore.Services
             return result;
         }
 
+        public List<SimpleReactObjectViewModel> GetAllCycleUses()
+        {
+
+            var cycleuses = _dataRepository.GetAllCycleUses();
+
+            var result = _mapper.Map<List<SimpleReactObjectViewModel>>(cycleuses);
+
+            return result;
+        }
+
     }
 }

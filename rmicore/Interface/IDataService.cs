@@ -23,5 +23,7 @@ namespace rmicore.Interface
         public List<SimpleReactObjectViewModel> GetAllLicenseTypes();
 
         public List<SimpleReactObjectViewModel> GetAllVehicleUses();
+
+        public List<SimpleReactObjectViewModel> GetAllCycleUses();
     }
 }

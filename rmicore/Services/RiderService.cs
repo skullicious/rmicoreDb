@@ -36,7 +36,8 @@ namespace rmicore.Services
             viewModel.contact.address = GetAddressById(rider.Id);
             viewModel.contact.Email = GetEmailById(rider.Id);
             viewModel.contact.phoneNumber = GetPhoneNumberById(rider.Id);
-          
+            viewModel.occupation = GetOccupationById(rider.Id);
+            viewModel.cycleUse = GetCycleUseById(rider.Id);
                         
             
             //viewModel.Person.Status = await GetStatusById(person.Id, new ProposerStatus()) ?? new ProposerStatus() { Person = person };
@@ -55,11 +56,12 @@ namespace rmicore.Services
             bool addressReturn = AddOrUpdateAddress(riderDto);
             bool emailReturn = AddOrUpdateEmail(riderDto);
             bool phoneNumberReturn = AddOrUpdatePhoneNumber(riderDto);
-            //bool statusReturn = AddOrUpdateStatusDetails(viewModel);
-            //bool occupationReturn = AddOrUpdateOccupationDetails(viewModel);
+            bool occupationReturn = AddOrUpdateOccupation(riderDto);
+            bool cycleUseReturn = AddOrUpdateCycleUse(riderDto);
+            //bool statusReturn = AddOrUpdateStatusDetails(viewModel);      
             //bool vehicleUseReturn = AddOrUpdateVehicleUseDetails(viewModel); 
 
-            bool blReturn = individualReturn && addressReturn && emailReturn && phoneNumberReturn;
+            bool blReturn = individualReturn && addressReturn && emailReturn && phoneNumberReturn && occupationReturn && cycleUseReturn;
             //bool blReturn = (licenceReturn && statusReturn && contactReturn && indivReturn);
             return blReturn;
         }
@@ -93,6 +95,32 @@ namespace rmicore.Services
             return blReturn;
         }
 
+        private bool AddOrUpdateOccupation(riderDto riderDto)
+        {
+            bool blReturn = true;
+
+            try
+            {
+
+                RiderOccupation occupation = riderDto.occupation;
+                occupation.UserId = riderDto.Id;
+
+              
+                //Try validating on a per class basis here
+                //    blReturn =  _riderRepository.AddIndividualToDatabase(individual);
+                var dbValue = GetOccupationById(riderDto.Id);
+
+                blReturn = (dbValue == null) ? _riderRepository.AddOccupationToDatabase(occupation) : _riderRepository.EditObjectInDatabase(dbValue, occupation);
+
+            }
+
+            catch (Exception ex)
+            {
+
+            }
+
+            return blReturn;
+        }
 
         private bool AddOrUpdatePhoneNumber(riderDto riderDto)
         {
@@ -102,11 +130,13 @@ namespace rmicore.Services
             {
                 PhoneNumber phoneNumber = riderDto.phoneNumber;
 
-                var riderId = riderDto.Id;
+                phoneNumber.UserId = riderDto.Id;
 
-                var dbValue = GetPhoneNumberById(riderId);
+                //var riderId = riderDto.Id;
 
-                blReturn = (dbValue == null) ? _riderRepository.AddPhoneNumberToDatabase(riderId,phoneNumber) : _riderRepository.EditObjectInDatabase(dbValue, phoneNumber);
+                var dbValue = GetPhoneNumberById(riderDto.Id);
+
+                blReturn = (dbValue == null) ? _riderRepository.AddPhoneNumberToDatabase(phoneNumber) : _riderRepository.EditObjectInDatabase(dbValue, phoneNumber);
 
             }
 
@@ -140,6 +170,30 @@ namespace rmicore.Services
 
             return blReturn;
         }
+
+        private bool AddOrUpdateCycleUse(riderDto riderDto)
+        {
+            bool blReturn = true;
+
+            try
+            {
+                RiderCycleUse cycleUse = riderDto.cycleUse;
+                cycleUse.UserId = riderDto.Id;
+
+                var dbValue = GetCycleUseById(riderDto.Id);
+
+                blReturn = (dbValue == null) ? _riderRepository.AddRiderCycleUseToDatabase(cycleUse) : _riderRepository.EditObjectInDatabase(dbValue, cycleUse);
+
+            }
+
+            catch (Exception ex)
+            {
+
+            }
+
+            return blReturn;
+        }
+
 
 
         private bool AddOrUpdateAddress(riderDto riderDto)
@@ -186,6 +240,17 @@ namespace rmicore.Services
         {
             return _riderRepository.GetIndividualById(riderId);
         }
+
+        private RiderOccupation GetOccupationById(int riderId)
+        {
+            return _riderRepository.GetOccupationById(riderId);
+        }
+
+        private RiderCycleUse GetCycleUseById(int riderId)
+        {
+            return _riderRepository.GetCycleUseById(riderId);
+        }
+
 
     }
 }

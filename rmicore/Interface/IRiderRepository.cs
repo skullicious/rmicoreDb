@@ -16,7 +16,11 @@ namespace rmicore.Interface
 
         bool AddEmailToDatabase(Email email);
 
-        bool AddPhoneNumberToDatabase(int riderId, PhoneNumber email);
+        bool AddPhoneNumberToDatabase(PhoneNumber phoneNumber);
+
+        bool AddOccupationToDatabase(RiderOccupation occupation);
+
+        bool AddRiderCycleUseToDatabase(RiderCycleUse cycleUse);
 
         Individual GetIndividualById(int riderId);
 
@@ -25,6 +29,10 @@ namespace rmicore.Interface
         Address GetAddressById(int riderId);
 
         PhoneNumber GetPhoneNumberById(int riderId);
+
+        RiderOccupation GetOccupationById(int riderId);
+
+        RiderCycleUse GetCycleUseById(int riderId);
 
         bool EditObjectInDatabase(object dbValues, object table);
     }

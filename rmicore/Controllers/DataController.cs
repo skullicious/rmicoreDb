@@ -75,6 +75,13 @@ namespace rminsurance.Controllers
             return Ok(result);
         }
 
+        [HttpGet("cycleuses")] // GET /api/test/cycleuses/
+        public IActionResult GetCycleUses()
+        {
+            List<SimpleReactObjectViewModel> result = _dataService.GetAllCycleUses();
+
+            return Ok(result);
+        }
 
         public override NoContentResult NoContent()
         {

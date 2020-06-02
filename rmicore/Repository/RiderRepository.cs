@@ -85,7 +85,28 @@ namespace rmicore.Repository
             return blSuccess;
         }
 
-        public bool AddPhoneNumberToDatabase(int riderId, PhoneNumber phoneNumber)
+        public bool AddOccupationToDatabase(RiderOccupation occupation)
+        {
+            bool blSuccess = true;
+            try
+            {
+                if (occupation == null)
+                    return false;
+                else
+                    _db.RiderOccupations.Add(occupation);  // KEY ISSUE HERE TAKE A LOOK
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                //Logger.Error("Failed AddIndividualToDatabase\n" + ex);
+                //Logger.Error(ex.GetAllMessages());
+                blSuccess = false;
+            }
+            return blSuccess;
+        }
+
+
+        public bool AddPhoneNumberToDatabase(PhoneNumber phoneNumber)
         {
             bool blSuccess = true;
             try
@@ -94,9 +115,34 @@ namespace rmicore.Repository
                     return false;
                 else
                 {
-                    User rider = GetRiderById(riderId);
-                    rider.PhoneNumbers.Add(phoneNumber);
+                   
+                    _db.PhoneNumbers.Add(phoneNumber);
                   
+                    _db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                //Logger.Error("Failed AddIndividualToDatabase\n" + ex);
+                //Logger.Error(ex.GetAllMessages());
+                blSuccess = false;
+            }
+            return blSuccess;
+        }
+
+
+        public bool AddRiderCycleUseToDatabase(RiderCycleUse cycleUse)
+        {
+            bool blSuccess = true;
+            try
+            {
+                if (cycleUse == null)
+                    return false;
+                else
+                {
+
+                    _db.RiderCycleUse.Add(cycleUse);
+
                     _db.SaveChanges();
                 }
             }
@@ -133,6 +179,24 @@ namespace rmicore.Repository
             return _db.PhoneNumbers.FirstOrDefault(s => s.Id == riderId);
 
          
+
+        }
+
+        public RiderOccupation GetOccupationById(int riderId)
+        {
+
+            return _db.RiderOccupations.FirstOrDefault(s => s.Id == riderId);
+
+
+
+        }
+
+        public RiderCycleUse GetCycleUseById(int riderId)
+        {
+
+            return _db.RiderCycleUse.FirstOrDefault(s => s.Id == riderId);
+
+
 
         }
 

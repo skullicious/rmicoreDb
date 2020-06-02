@@ -28,6 +28,8 @@ namespace rmicore
         public DbSet<OccupationStatus> OccupationStatus { get; set; }
         public DbSet<EmploymentType> EmploymentTypes { get; set; }
         public DbSet<VehicleUse> VehicleUses { get; set; }
+
+        public DbSet<CycleUse> CycleUses { get; set; }
         public DbSet<LicenseType> LicenseTypes { get; set; }
         public DbSet<Individual> Individual { get; set; }
         public DbSet<Address> Address { get; set; }
@@ -35,7 +37,11 @@ namespace rmicore
         public DbSet<Email> Email { get; set; }
 
         public DbSet<PhoneNumber> PhoneNumbers { get; set; }
-           
+
+        public DbSet<RiderOccupation> RiderOccupations { get; set; }
+
+        public DbSet<RiderCycleUse> RiderCycleUse { get; set; }
+
         public DbSet<Rider> Rider { get; set; }
       
 
@@ -191,22 +197,45 @@ namespace rmicore
             modelBuilder.Entity<LicenseType>().HasData(new LicenseType
             {
                 LicenseTypeId = 1,
-                Name = "Provisional"
+                Name = "Elite"
             }, new LicenseType
             {
                 LicenseTypeId = 2,
-                Name = "Full UK"
+                Name = "1st Cat"
             },
            new LicenseType
            {
                LicenseTypeId = 3,
-               Name = "Full EU"
+               Name = "2nd Cat"
            },
            new LicenseType
            {
                LicenseTypeId = 4,
-               Name = "Full Other"
+               Name = "3rd Cat"
+           },
+           new LicenseType
+          {
+            LicenseTypeId = 5,
+            Name = "4th Cat"
            });
+
+
+
+            modelBuilder.Entity<CycleUse>().HasData(new CycleUse
+            {
+                CycleUseId = 1,
+                Name = "Sportives"
+
+            }, new CycleUse
+            {
+                CycleUseId = 2,
+                Name = "Time Trials"
+            },
+             new CycleUse
+             {
+                 CycleUseId = 3,
+                 Name = "Road Racing"
+             });
 
 
         }

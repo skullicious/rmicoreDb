@@ -18,6 +18,8 @@ namespace rmicore.Interface
 
         public List<VehicleUse> GetAllVehicleUses();
 
+        public List<CycleUse> GetAllCycleUses();
+
         public List<LicenseType> GetAllLicenseTypes();
     }
 }

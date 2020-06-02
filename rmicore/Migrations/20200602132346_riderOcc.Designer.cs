@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using rmicore;
 
 namespace rmicore.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20200602132346_riderOcc")]
+    partial class riderOcc
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,15 +50,15 @@ namespace rmicore.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c726dbc5-ad21-4487-946e-646c72d9b75d",
-                            ConcurrencyStamp = "023895fc-5abf-41bc-90f0-3fe7f50e8b1a",
+                            Id = "4c8df5f7-21d3-4547-aac5-54d7614c5afc",
+                            ConcurrencyStamp = "8ea6e853-5bb6-458e-8397-76054f99f53f",
                             Name = "Visitor",
                             NormalizedName = "VISITOR"
                         },
                         new
                         {
-                            Id = "d89115e1-e142-4ee3-9389-d95af71c9b28",
-                            ConcurrencyStamp = "3b200060-bf0a-4e68-a388-51a1cd28fecb",
+                            Id = "72604063-400b-4101-8abc-ae5e49db21f9",
+                            ConcurrencyStamp = "2ecd3004-d5e4-4d65-822f-374526595f7c",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -284,38 +286,6 @@ namespace rmicore.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("rmicore.Entities.CycleUse", b =>
-                {
-                    b.Property<int>("CycleUseId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CycleUseId");
-
-                    b.ToTable("CycleUses");
-
-                    b.HasData(
-                        new
-                        {
-                            CycleUseId = 1,
-                            Name = "Sportives"
-                        },
-                        new
-                        {
-                            CycleUseId = 2,
-                            Name = "Time Trials"
-                        },
-                        new
-                        {
-                            CycleUseId = 3,
-                            Name = "Road Racing"
-                        });
-                });
-
             modelBuilder.Entity("rmicore.Entities.Email", b =>
                 {
                     b.Property<int>("EmailId")
@@ -428,27 +398,22 @@ namespace rmicore.Migrations
                         new
                         {
                             LicenseTypeId = 1,
-                            Name = "Elite"
+                            Name = "Provisional"
                         },
                         new
                         {
                             LicenseTypeId = 2,
-                            Name = "1st Cat"
+                            Name = "Full UK"
                         },
                         new
                         {
                             LicenseTypeId = 3,
-                            Name = "2nd Cat"
+                            Name = "Full EU"
                         },
                         new
                         {
                             LicenseTypeId = 4,
-                            Name = "3rd Cat"
-                        },
-                        new
-                        {
-                            LicenseTypeId = 5,
-                            Name = "4th Cat"
+                            Name = "Full Other"
                         });
                 });
 
@@ -595,33 +560,6 @@ namespace rmicore.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Rider");
-                });
-
-            modelBuilder.Entity("rmicore.Entities.RiderCycleUse", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("cycleUse")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("isCommuting")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("licenseType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("motoringQualification")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("RiderCycleUse");
                 });
 
             modelBuilder.Entity("rmicore.Entities.RiderOccupation", b =>

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using rmicore;
 
 namespace rmicore.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20200602145030_licensetypechange")]
+    partial class licensetypechange
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,15 +50,15 @@ namespace rmicore.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c726dbc5-ad21-4487-946e-646c72d9b75d",
-                            ConcurrencyStamp = "023895fc-5abf-41bc-90f0-3fe7f50e8b1a",
+                            Id = "0a524a41-9a3b-4acb-9692-31304a18ef70",
+                            ConcurrencyStamp = "5da42cab-2cac-467e-8c63-a47baa91c4a3",
                             Name = "Visitor",
                             NormalizedName = "VISITOR"
                         },
                         new
                         {
-                            Id = "d89115e1-e142-4ee3-9389-d95af71c9b28",
-                            ConcurrencyStamp = "3b200060-bf0a-4e68-a388-51a1cd28fecb",
+                            Id = "9abd4a2a-f3d1-4c04-87d1-2b5fdb702cd6",
+                            ConcurrencyStamp = "3eb099cf-d77d-431f-8c9b-f29f46247c8d",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -595,33 +597,6 @@ namespace rmicore.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Rider");
-                });
-
-            modelBuilder.Entity("rmicore.Entities.RiderCycleUse", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("cycleUse")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("isCommuting")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("licenseType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("motoringQualification")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("RiderCycleUse");
                 });
 
             modelBuilder.Entity("rmicore.Entities.RiderOccupation", b =>

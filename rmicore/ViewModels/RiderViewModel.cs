@@ -21,7 +21,10 @@ namespace rmicore.ViewModels
            contact.Email = new Email();
 
            contact.phoneNumber = new PhoneNumber();
-            
+
+           occupation = new RiderOccupation();
+
+           cycleUse = new RiderCycleUse();
             
         }
 
@@ -35,10 +38,9 @@ namespace rmicore.ViewModels
 
         public PhoneNumber phoneNumber { get; set; }
 
+        public RiderOccupation occupation { get; set; }      
 
-    
-
-
+        public RiderCycleUse cycleUse { get; set; }
 
 
     }
