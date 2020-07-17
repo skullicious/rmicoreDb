@@ -176,7 +176,7 @@ namespace rmicore.Repository
         public PhoneNumber GetPhoneNumberById(int riderId)
         {
            
-            return _db.PhoneNumbers.FirstOrDefault(s => s.Id == riderId);
+            return _db.PhoneNumbers.FirstOrDefault(s => s.UserId == riderId);
 
          
 
@@ -185,7 +185,7 @@ namespace rmicore.Repository
         public RiderOccupation GetOccupationById(int riderId)
         {
 
-            return _db.RiderOccupations.FirstOrDefault(s => s.Id == riderId);
+            return _db.RiderOccupations.FirstOrDefault(s => s.UserId == riderId);
 
 
 
@@ -194,7 +194,7 @@ namespace rmicore.Repository
         public RiderCycleUse GetCycleUseById(int riderId)
         {
 
-            return _db.RiderCycleUse.FirstOrDefault(s => s.Id == riderId);
+            return _db.RiderCycleUse.FirstOrDefault(s => s.UserId == riderId);
 
 
 

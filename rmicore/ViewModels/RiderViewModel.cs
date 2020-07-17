@@ -14,6 +14,7 @@ namespace rmicore.ViewModels
             //rider = new Rider();
            individual = new Individual();
 
+
            contact = new Contact();
 
            contact.address = new Address();

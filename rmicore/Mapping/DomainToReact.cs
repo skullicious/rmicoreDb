@@ -30,6 +30,8 @@ namespace rmicore.Mapping
                  opt.MapFrom(src => src.individual.lastName))
                   .ForPath(dest => dest.individual.title, opt =>
                  opt.MapFrom(src => src.individual.title))
+                  .ForPath(dest => dest.individual.dateOfBirth, opt =>
+                 opt.MapFrom(src => src.individual.dateOfBirth))
                   .ForPath(dest => dest.address.PostCode, opt =>
                  opt.MapFrom(src => src.contact.address.PostCode))
                     .ForPath(dest => dest.address.Id, opt =>
@@ -42,27 +44,27 @@ namespace rmicore.Mapping
                  opt.MapFrom(src => src.contact.phoneNumber.Id))
                      .ForPath(dest => dest.phoneNumber.Number, opt =>
                  opt.MapFrom(src => src.contact.phoneNumber.Number))
-                             .ForPath(dest => dest.occupation.Id, opt =>
+                    .ForPath(dest => dest.occupation.Id, opt =>
                  opt.MapFrom(src => src.occupation.Id))
-                      .ForPath(dest => dest.occupation.occupation, opt =>
+                    .ForPath(dest => dest.occupation.occupation, opt =>
                  opt.MapFrom(src => src.occupation.occupation))
-                        .ForPath(dest => dest.occupation.occupationStatus, opt =>
+                    .ForPath(dest => dest.occupation.occupationStatus, opt =>
                  opt.MapFrom(src => src.occupation.occupationStatus))
-                          .ForPath(dest => dest.occupation.employmentType, opt =>
+                    .ForPath(dest => dest.occupation.employmentType, opt =>
                  opt.MapFrom(src => src.occupation.employmentType))
-                            .ForPath(dest => dest.occupation.partTime, opt =>
+                    .ForPath(dest => dest.occupation.partTime, opt =>
                  opt.MapFrom(src => src.occupation.partTime))
-                             .ForPath(dest => dest.occupation.partTime, opt =>
+                    .ForPath(dest => dest.occupation.partTime, opt =>
                  opt.MapFrom(src => src.occupation.partTime))
-                             .ForPath(dest => dest.cycleUse.Id, opt =>
+                    .ForPath(dest => dest.cycleUse.Id, opt =>
                  opt.MapFrom(src => src.cycleUse.Id))
-                              .ForPath(dest => dest.cycleUse.cycleUse, opt =>
+                    .ForPath(dest => dest.cycleUse.cycleUse, opt =>
                  opt.MapFrom(src => src.cycleUse.cycleUse))
-                               .ForPath(dest => dest.cycleUse.isCommuting, opt =>
+                   .ForPath(dest => dest.cycleUse.isCommuting, opt =>
                  opt.MapFrom(src => src.cycleUse.isCommuting))
-                                .ForPath(dest => dest.cycleUse.licenseType, opt =>
+                   .ForPath(dest => dest.cycleUse.licenseType, opt =>
                  opt.MapFrom(src => src.cycleUse.licenseType))
-                                .ForPath(dest => dest.cycleUse.motoringQualification, opt =>
+                    .ForPath(dest => dest.cycleUse.motoringQualification, opt =>
                  opt.MapFrom(src => src.cycleUse.motoringQualification))
                      ;            
 
