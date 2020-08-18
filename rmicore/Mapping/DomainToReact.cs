@@ -34,8 +34,20 @@ namespace rmicore.Mapping
                  opt.MapFrom(src => src.individual.dateOfBirth))
                   .ForPath(dest => dest.address.PostCode, opt =>
                  opt.MapFrom(src => src.contact.address.PostCode))
+                     .ForPath(dest => dest.address.AddressLine1, opt =>
+                 opt.MapFrom(src => src.contact.address.AddressLine1))
+                     .ForPath(dest => dest.address.AddressLine2, opt =>
+                 opt.MapFrom(src => src.contact.address.AddressLine2))
+                    .ForPath(dest => dest.address.AddressLine3, opt =>
+                 opt.MapFrom(src => src.contact.address.AddressLine3))
+                     .ForPath(dest => dest.address.AddressLine4, opt =>
+                 opt.MapFrom(src => src.contact.address.AddressLine4))
+                    .ForPath(dest => dest.address.AddressLine5, opt =>
+                 opt.MapFrom(src => src.contact.address.AddressLine5))
                     .ForPath(dest => dest.address.Id, opt =>
                  opt.MapFrom(src => src.contact.address.Id))
+                    .ForPath(dest => dest.address.ConfirmedAddress, opt =>
+                 opt.MapFrom(src => src.contact.address.ConfirmedAddress))
                     .ForPath(dest => dest.email.EmailAddress, opt =>
                  opt.MapFrom(src => src.contact.Email.EmailAddress))
                     .ForPath(dest => dest.email.EmailId, opt =>

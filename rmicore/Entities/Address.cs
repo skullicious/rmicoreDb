@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,7 +7,8 @@ using System.Threading.Tasks;
 namespace rmicore.Entities
 {
     public class Address
-    {
+    {      
+
         public int Id { get; set; }
 
         public int UserId { get; set; }
